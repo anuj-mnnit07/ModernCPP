@@ -1,3 +1,6 @@
+#define CATCH_CONFIG_MAIN
+#include "catch2/catch_all.hpp"
+
 #include <iostream>
 #include <sstream>
 #include <string>
@@ -28,11 +31,10 @@ std::vector<std::string> to_string_modern(const Params &...params) {
   return {to_string_impl(params)...};
 }
 
-int main() {
+TEST_CASE("variadic_template") {
   std::cout << to_string_impl(5) << std::endl;
-  auto vecstr = to_string_modern2("hello", 6, 6.6f, 6.7);
+  auto vecstr = to_string_modern("hello", 6, 6.6f, 6.7);
   for (const auto &v : vecstr) {
     std::cout << v << std::endl;
   }
-  return 0;
 }
